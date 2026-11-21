@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import TravelerDialog from "./TravelerDialog";
 import { getTraveler, setTraveler } from "@/service/tripStore";
+import { FaCompass } from "react-icons/fa";
 
 const Header = () => {
   const [traveler, setTravelerState] = useState(getTraveler());
@@ -24,7 +25,7 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between px-6 md:px-10 py-4 shadow-sm bg-white/95 sticky top-0 z-30">
       <Link to="/" className="flex items-center gap-2 select-none">
-        <span className="text-2xl">🧭</span>
+        <FaCompass className="text-2xl text-teal-700" />
         <span className="text-2xl font-extrabold tracking-tight text-teal-700">
           TravelOft
         </span>

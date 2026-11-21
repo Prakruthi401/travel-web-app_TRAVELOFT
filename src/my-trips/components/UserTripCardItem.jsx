@@ -1,4 +1,5 @@
 import PlaceImage from "@/components/custom/PlaceImage";
+import { FaMapMarked } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const UserTripCardItem = ({ trip }) => {
@@ -9,7 +10,7 @@ const UserTripCardItem = ({ trip }) => {
         <PlaceImage
           className="mx-auto h-64 w-full rounded-xl object-cover"
           query={destination}
-          emoji="🗺️"
+          icon={FaMapMarked}
         />
         <h2 className="mt-2 text-lg font-bold">{destination}</h2>
         <h2 className="text-sm text-gray-500">

@@ -1,5 +1,6 @@
 import PlaceImage from "@/components/custom/PlaceImage";
 import { CiStar } from "react-icons/ci";
+import { FaHotel } from "react-icons/fa";
 
 const HotelCardItem = ({ h, destination }) => {
   const mapsUrl =
@@ -11,7 +12,7 @@ const HotelCardItem = ({ h, destination }) => {
         <PlaceImage
           className="h-52 w-80 rounded-md object-cover"
           query={`${h?.name}, ${destination || ""}`}
-          emoji="🏨"
+          icon={FaHotel}
         />
         <div className="mt-2 flex w-full items-center justify-between px-6">
           <div className="font-bold">{h.name}</div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchPlacePhoto } from "@/service/photos";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const PALETTES = [
   "from-teal-500 to-emerald-600",
@@ -14,7 +15,7 @@ function paletteFor(text) {
   return PALETTES[hash % PALETTES.length];
 }
 
-const PlaceImage = ({ query, className = "", alt, emoji = "🧭" }) => {
+const PlaceImage = ({ query, className = "", alt, icon: Icon = FaMapMarkerAlt }) => {
   const [url, setUrl] = useState(null);
   const [done, setDone] = useState(false);
 
@@ -50,7 +51,7 @@ const PlaceImage = ({ query, className = "", alt, emoji = "🧭" }) => {
         done ? "" : "animate-pulse"
       }`}
     >
-      <span className="text-4xl drop-shadow-sm">{emoji}</span>
+      <Icon className="text-3xl text-white/90" />
     </div>
   );
 };

@@ -13,7 +13,7 @@ const ItineraryCard = ({ plan, destination }) => {
         <PlaceImage
           className="h-48 w-full object-cover"
           query={`${plan?.placeName}, ${destination || ""}`}
-          emoji="📍"
+          icon={FaMapMarkerAlt}
         />
         <div className="p-4">
           <h4 className="mb-2 flex items-center text-xl font-semibold">

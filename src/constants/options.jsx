@@ -1,30 +1,40 @@
+import {
+  FaUser,
+  FaUserFriends,
+  FaHome,
+  FaUsers,
+  FaCoins,
+  FaWallet,
+  FaGem,
+} from "react-icons/fa";
+
 export const SelectTravelList = [
   {
     id: 1,
     title: "Just me",
     desc: "Solo, at my own pace",
-    icon: "🎒",
+    icon: FaUser,
     people: "1 person",
   },
   {
     id: 2,
     title: "The two of us",
     desc: "A trip for two",
-    icon: "💑",
+    icon: FaUserFriends,
     people: "2 people",
   },
   {
     id: 3,
     title: "Family",
     desc: "Kids, parents, everyone",
-    icon: "🏠",
+    icon: FaHome,
     people: "3 to 4 people",
   },
   {
     id: 4,
     title: "The gang",
     desc: "Friends trip, chaos included",
-    icon: "🧑‍🤝‍🧑",
+    icon: FaUsers,
     people: "5 to 10 people",
   },
 ];
@@ -34,19 +44,19 @@ export const SelectBudgetOptions = [
     id: 1,
     title: "Shoestring",
     desc: "Hostels, buses, street food",
-    icon: "💸",
+    icon: FaCoins,
   },
   {
     id: 2,
     title: "Comfortable",
     desc: "Decent stays, no splurging",
-    icon: "💵",
+    icon: FaWallet,
   },
   {
     id: 3,
     title: "Treat us",
     desc: "The good stuff, within reason",
-    icon: "💎",
+    icon: FaGem,
   },
 ];
 

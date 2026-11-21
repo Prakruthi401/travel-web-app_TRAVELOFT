@@ -99,7 +99,7 @@ const CreateTrip = () => {
     <div className="flex min-h-screen flex-col items-center bg-gradient-to-b from-teal-50 to-stone-100 px-4 py-10">
       <div className="w-full max-w-2xl text-center">
         <h1 className="mb-3 text-4xl font-bold text-teal-900">
-          Where to, {getTraveler()?.name || "traveller"}? ✈️
+          Where to, {getTraveler()?.name || "traveller"}?
         </h1>
         <p className="mb-10 text-lg text-gray-600">
           Four quick questions and Gemini drafts the whole trip - stays, days,
@@ -144,7 +144,7 @@ const CreateTrip = () => {
               onClick={() => handleInputChange("budget", item.title)}
             >
               <div className="flex flex-col items-center text-center">
-                <div className="mb-2 text-4xl">{item.icon}</div>
+                <item.icon className="mb-2 text-4xl" />
                 <h2 className="mb-1 text-lg font-bold">{item.title}</h2>
                 <p className="text-sm">{item.desc}</p>
               </div>
@@ -169,7 +169,7 @@ const CreateTrip = () => {
               onClick={() => handleInputChange("noOfPeople", item.people)}
             >
               <div className="flex items-center justify-center">
-                <div className="mr-2 text-4xl">{item.icon}</div>
+                <item.icon className="mr-2 text-4xl" />
                 <h2 className="text-lg font-bold">{item.title}</h2>
               </div>
               <p className="mt-2 text-center">{item.desc}</p>
