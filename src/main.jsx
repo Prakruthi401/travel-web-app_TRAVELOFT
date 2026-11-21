@@ -25,17 +25,20 @@ const Layout = () => (
   </div>
 );
 
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      { path: "/", element: <App /> },
-      { path: "/create-trip", element: <CreateTrip /> },
-      { path: "/view-trip/:tripId", element: <ViewTrip /> },
-      { path: "/my-trip", element: <MyTrips /> },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      children: [
+        { path: "/", element: <App /> },
+        { path: "/create-trip", element: <CreateTrip /> },
+        { path: "/view-trip/:tripId", element: <ViewTrip /> },
+        { path: "/my-trip", element: <MyTrips /> },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
