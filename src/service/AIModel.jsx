@@ -14,13 +14,13 @@ export const setGeminiKey = (key) => {
   else localStorage.removeItem("traveloft_gemini_key");
 };
 
-const MODEL_NAME = import.meta.env.VITE_GEMINI_MODEL || "gemini-2.5-flash";
+const MODEL_NAME = import.meta.env.VITE_GEMINI_MODEL || "gemini-3.5-flash";
 
 const generationConfig = {
   temperature: 1,
   topP: 0.95,
   topK: 64,
-  maxOutputTokens: 8192,
+  maxOutputTokens: 16384,
   responseMimeType: "application/json",
 };
 

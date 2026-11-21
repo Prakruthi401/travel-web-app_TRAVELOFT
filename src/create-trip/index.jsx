@@ -63,7 +63,8 @@ const CreateTrip = () => {
 
       const result = await makeChatSession().sendMessage(prompt);
       const text = result?.response?.text();
-      const tripData = JSON.parse(text);
+      // newer models sometimes still wrap JSON in fences
+      const tripData = JSON.parse(text.replace(/```json|```/g, "").trim());
 
       const id = Date.now().toString();
       saveTrip({
