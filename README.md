@@ -1,5 +1,7 @@
 # TravelOft
 
+**Live site:** https://prakruthi401.github.io/travel-web-app_TRAVELOFT/
+
 An AI trip planner that builds a day-by-day itinerary around your budget and who's travelling. Pick a destination, set the days, budget and group, and Google's Gemini drafts stay options plus a daily plan - ticket prices in ₹, ratings, and how long each stop actually takes.
 
 ## Demo

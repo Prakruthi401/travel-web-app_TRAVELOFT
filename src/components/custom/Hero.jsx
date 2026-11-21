@@ -15,7 +15,7 @@ const Hero = () => {
   return (
     <div className="relative flex min-h-[calc(100vh-72px)] flex-col items-center justify-center overflow-hidden p-6 text-center">
       <img
-        src="/bg.jpg"
+        src={import.meta.env.BASE_URL + "bg.jpg"}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
       />
