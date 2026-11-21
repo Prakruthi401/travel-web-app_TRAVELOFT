@@ -1,10 +1,11 @@
+**Live site:** https://prakruthi401.github.io/travel-web-app_TRAVELOFT/
+
 # TravelOft
 
-**Live site:** https://prakruthi401.github.io/travel-web-app_TRAVELOFT/
 
 An AI trip planner that builds a day-by-day itinerary around your budget and who's travelling. Pick a destination, set the days, budget and group, and Google's Gemini drafts stay options plus a daily plan - ticket prices in ₹, ratings, and how long each stop actually takes.
 
-**Bring your own Gemini key.** The app asks for a Google Gemini API key the first time you plan a trip. Get one free at aistudio.google.com. It is stored only in your own browser and never sent anywhere except Google's API.
+**Bring your own Gemini key.** The app asks for a Google Gemini API key the first time you plan a trip. Get one free at aistudio.google.com. It stays in this browser tab for the session and is sent only to Google's API. Closing the tab clears it.
 
 ## Demo
 

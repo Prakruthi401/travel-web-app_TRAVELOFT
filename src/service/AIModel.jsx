@@ -2,8 +2,11 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // The key can come from the build env (local dev / her own deploy) or be
 // pasted into the UI by a visitor - it stays in their browser either way.
+// Remove keys saved by earlier versions. New visitor keys last only for this tab.
+localStorage.removeItem("traveloft_gemini_key");
+
 export const getGeminiKey = () =>
-  localStorage.getItem("traveloft_gemini_key") ||
+  sessionStorage.getItem("traveloft_gemini_key") ||
   import.meta.env.VITE_GOOGLE_GEMINI_AI_API_KEY ||
   "";
 
@@ -16,8 +19,8 @@ const PROXY_URL = import.meta.env.VITE_GEMINI_PROXY_URL || "";
 export const hasGeminiAccess = () => Boolean(PROXY_URL) || hasGeminiKey();
 
 export const setGeminiKey = (key) => {
-  if (key) localStorage.setItem("traveloft_gemini_key", key.trim());
-  else localStorage.removeItem("traveloft_gemini_key");
+  if (key) sessionStorage.setItem("traveloft_gemini_key", key.trim());
+  else sessionStorage.removeItem("traveloft_gemini_key");
 };
 
 const MODEL_NAME = import.meta.env.VITE_GEMINI_MODEL || "gemini-3.1-flash-lite";
