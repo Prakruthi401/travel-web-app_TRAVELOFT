@@ -76,9 +76,20 @@ const CreateTrip = () => {
       navigate("/view-trip/" + id);
     } catch (err) {
       console.error("generation failed:", err);
-      toast(
-        "Trip generation failed - the Gemini key may be invalid or out of quota"
-      );
+      const msg = String(err?.message || err);
+      if (/429|quota|RESOURCE_EXHAUSTED/i.test(msg)) {
+        toast(
+          "Today's free Gemini quota is used up - try again tomorrow, or use a different key below"
+        );
+      } else if (/503|high demand|overloaded|UNAVAILABLE/i.test(msg)) {
+        toast("Gemini is busy right now - give it a minute and try again");
+      } else if (/api.?key|API_KEY|403|PERMISSION/i.test(msg)) {
+        setGeminiKey(null);
+        setKeyReady(false);
+        toast("That Gemini key was rejected - paste a fresh one below");
+      } else {
+        toast("Trip generation failed - please try again");
+      }
     } finally {
       setLoading(false);
     }
@@ -208,6 +219,18 @@ const CreateTrip = () => {
           {loading ? "Planning your trip... (10-20s)" : "Generate my trip"}
         </Button>
       </div>
+
+      {keyReady && (
+        <button
+          onClick={() => {
+            setGeminiKey(null);
+            setKeyReady(false);
+          }}
+          className="mt-3 text-sm text-gray-400 underline hover:text-gray-600"
+        >
+          Use a different Gemini key
+        </button>
+      )}
 
       <TravelerDialog
         open={openNameDialog}

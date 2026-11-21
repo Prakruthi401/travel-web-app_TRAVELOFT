@@ -14,7 +14,7 @@ export const setGeminiKey = (key) => {
   else localStorage.removeItem("traveloft_gemini_key");
 };
 
-const MODEL_NAME = import.meta.env.VITE_GEMINI_MODEL || "gemini-3.5-flash";
+const MODEL_NAME = import.meta.env.VITE_GEMINI_MODEL || "gemini-3.1-flash-lite";
 
 const generationConfig = {
   temperature: 1,
