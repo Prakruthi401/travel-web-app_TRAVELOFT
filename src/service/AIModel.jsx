@@ -9,6 +9,12 @@ export const getGeminiKey = () =>
 
 export const hasGeminiKey = () => Boolean(getGeminiKey());
 
+// Server-side proxy holding the owner's key (see proxy/). Empty until deployed.
+const PROXY_URL = import.meta.env.VITE_GEMINI_PROXY_URL || "";
+
+// True when trips can be generated either through the proxy or a visitor key.
+export const hasGeminiAccess = () => Boolean(PROXY_URL) || hasGeminiKey();
+
 export const setGeminiKey = (key) => {
   if (key) localStorage.setItem("traveloft_gemini_key", key.trim());
   else localStorage.removeItem("traveloft_gemini_key");
@@ -105,8 +111,44 @@ const FEW_SHOT = [
   },
 ];
 
-export function makeChatSession() {
+function makeDirectSession() {
   const genAI = new GoogleGenerativeAI(getGeminiKey());
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
   return model.startChat({ generationConfig, history: FEW_SHOT });
+}
+
+// Same sendMessage interface as the SDK chat, but the key stays on the server.
+function makeProxySession() {
+  return {
+    async sendMessage(message) {
+      const res = await fetch(PROXY_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [...FEW_SHOT, { role: "user", parts: [{ text: message }] }],
+          generationConfig,
+        }),
+      });
+      if (!res.ok) throw new Error(`proxy ${res.status}`);
+      const data = await res.json();
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+      return { response: { text: () => text } };
+    },
+  };
+}
+
+export function makeChatSession() {
+  if (!PROXY_URL) return makeDirectSession();
+  const viaProxy = makeProxySession();
+  return {
+    async sendMessage(message) {
+      try {
+        return await viaProxy.sendMessage(message);
+      } catch (err) {
+        // owner's key unreachable or over quota: use the visitor's key if given
+        if (hasGeminiKey()) return makeDirectSession().sendMessage(message);
+        throw err;
+      }
+    },
+  };
 }

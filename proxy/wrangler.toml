@@ -1,0 +1,4 @@
+name = "traveloft-gemini-proxy"
+main = "worker.mjs"
+compatibility_date = "2026-11-21"
+# Her key lives in Workers secrets: wrangler secret put GEMINI_API_KEY

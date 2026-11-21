@@ -7,7 +7,7 @@ import {
 } from "@/constants/options";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { hasGeminiKey, makeChatSession, setGeminiKey } from "@/service/AIModel";
+import { hasGeminiAccess, makeChatSession, setGeminiKey } from "@/service/AIModel";
 import { getTraveler, saveTrip } from "@/service/tripStore";
 import { useNavigate } from "react-router-dom";
 import DestinationInput from "@/components/custom/DestinationInput";
@@ -18,7 +18,7 @@ const CreateTrip = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({});
   const [keyDraft, setKeyDraft] = useState("");
-  const [keyReady, setKeyReady] = useState(hasGeminiKey());
+  const [keyReady, setKeyReady] = useState(hasGeminiAccess());
   const navigate = useNavigate();
 
   const handleInputChange = (name, value) =>
@@ -49,7 +49,7 @@ const CreateTrip = () => {
       toast("Fill in the destination, days, budget and group first");
       return;
     }
-    if (!hasGeminiKey()) {
+    if (!hasGeminiAccess()) {
       toast("Add a Gemini API key below first");
       return;
     }
